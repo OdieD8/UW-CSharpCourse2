@@ -20,7 +20,9 @@ namespace MoreLists
                 from user in users
                 where user.Password == "hello"
                 select user.Password;
-
+            
+            //I don't see how I can output the passwords to the console without
+            //using some kind of loop here
             foreach (string password in helloPasswords)
             {
                 Console.WriteLine($"Password: {password}");
@@ -29,7 +31,6 @@ namespace MoreLists
             users.RemoveAll( user => user.Password == user.Name.ToLower());
 
             var firstWithHello = users.Where( user => user.Password == "hello").First();
-
             users.Remove(firstWithHello);
 
             Console.WriteLine();
