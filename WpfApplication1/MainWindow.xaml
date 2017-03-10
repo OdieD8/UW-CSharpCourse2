@@ -9,7 +9,7 @@
     <Button>
         <StackPanel Orientation="Horizontal">
             <Image Source="images/ic_thumb_up_black_24dp_2x.png" />
-            <TextBlock Text="Thumbs Up" />
+            <TextBlock Text="Thumbs Up" />            
         </StackPanel>
-    </Button>
+    </Button>     
 </Window>

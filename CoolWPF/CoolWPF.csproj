@@ -4,7 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8F3B2984-779E-4804-A0E9-AFF7FF9CD47B}</ProjectGuid>
+    <ProjectGuid>{696316AC-D977-4477-85C1-C203ABE13DB9}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>CoolWPF</RootNamespace>

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Data.Entity;
 
 namespace HelloWorld
 {
@@ -20,39 +21,33 @@ namespace HelloWorld
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Models.User user = new Models.User();
+
         public MainWindow()
         {
             InitializeComponent();
+            
+            // Exercise 1: Maximize your window using code
+            //WindowState = WindowState.Maximized;
         }
 
-        private bool nameText = false;
-        private bool passwordText = false;
+        public override void EndInit()
+        {
+            base.EndInit();
+            //uxContainer.DataContext = user;
+
+            var sample = new SampleEntities();
+            sample.Users.Load();
+            uxList.ItemsSource = sample.Users.Local;
+        }
 
         private void uxSubmit_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Submitting password: " + uxPassword.Text);
-        }
-
-        private void uxSubmitButtonEnabled()
-        {
-            if (uxName.Text != "" && uxPassword.Text != "")
-            {
-                uxSubmit.IsEnabled = true;
-            }
-            else
-            {
-                uxSubmit.IsEnabled = false;
-            }
-        }
-
-        private void uxName_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            uxSubmitButtonEnabled();
-        }
-
-        private void uxPassword_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            uxSubmitButtonEnabled();
+            MessageBox.Show("Submitting password:" + uxPassword.Password);
+            var window = new SecondWindow();
+            Application.Current.MainWindow = window;
+            Close();
+            window.Show();
         }
     }
 }

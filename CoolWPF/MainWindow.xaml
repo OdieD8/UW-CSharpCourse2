@@ -4,7 +4,7 @@
         Title="Target Practice" Height="370" Width="350">
     <Window.Resources>
         <ControlTemplate TargetType="Button" x:Key="targetButton">
-            <Canvas Width="100" Height="100" Name="mainCanvas" >
+            <Canvas Width="100" Height="100" Name="mainCanvas">
                 <!-- Outer Red Stripe -->
                 <Ellipse Height="100" Width="100" Fill="DarkRed" />
                 <!-- Outer White Strip -->
@@ -81,7 +81,7 @@
             <Button Name="testButton1b" Content="Button1b" />
             <Button Name="testButton1c" Content="Button1c" />
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
+        <StackPanel Orientation="Horizontal" Background="Black">
             <Button Name="testButton2a" Content="Button2a" />
             <Button Name="testButton2b" Content="Button2b" />
             <Button Name="testButton2c" Content="Button2c" />
