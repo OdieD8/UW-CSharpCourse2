@@ -10,8 +10,12 @@
         <ListView x:Name="uxList">
             <ListView.View>
                 <GridView>
-                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Header="Name" Width="100"></GridViewColumn>
-                    <GridViewColumn DisplayMemberBinding="{Binding Password}" Header="Password" Width="100"></GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Name}" Width="100">
+                        <GridViewColumnHeader x:Name="Name" Tag="Name" Click="uxList_MouseLeftButtonUp">Name</GridViewColumnHeader>
+                    </GridViewColumn>
+                    <GridViewColumn DisplayMemberBinding="{Binding Password}" Width="100">
+                        <GridViewColumnHeader x:Name="Password" Tag="Password" Click="uxList_MouseLeftButtonUp">Password</GridViewColumnHeader>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>
