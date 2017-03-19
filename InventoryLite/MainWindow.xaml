@@ -1,0 +1,36 @@
+﻿<Window x:Class="InventoryLite.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InventoryLite"
+        mc:Ignorable="d"
+        Title="InventoryLite" Height="700" Width="1000">
+    <StackPanel>
+        <Menu>
+            <MenuItem Header="_File">
+                <MenuItem Header="_New" Click="OnNew_Click"/>
+                <MenuItem Header="_Open" Click="OnOpen_Click"/>
+                <Separator/>
+                <MenuItem Header="E_xit" Click="OnExit_Click"/>
+            </MenuItem>
+            <MenuItem Header="Edit">
+                <MenuItem Header="_Find" Click="OnFind_Click"/>
+                <MenuItem Header="_Delete Current Record" Click="OnDelete_Click"/>
+            </MenuItem>
+        </Menu>
+        <ListView x:Name="inventoryItems" Height="200" VerticalAlignment="Top">
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Category}" Header="Category" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=SKU}" Header="SKU" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Description}" Header="Description" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Price}" Header="Price" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Quantity}" Header="Quantity" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Cost}" Header="Cost" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Value}" Header="Value" Width="100"/>
+                </GridView>
+            </ListView.View>
+        </ListView>
+    </StackPanel>
+</Window>
