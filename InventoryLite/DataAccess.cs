@@ -31,6 +31,16 @@ namespace InventoryLite
             return null;
         }
 
+        public static int InsertNewItem(string category, string sku, string description, decimal price, decimal quantity, decimal cost)
+        {
+            decimal value = price * quantity;
+            string query = $"INSERT INTO VAD VALUES ('{category}', '{sku}', '{description}', {price}, {quantity}, {cost}, {value})";
+
+            int response = SendNonSelectQuery(DSNHost, query);
+
+            return response;
+        }
+
         public static DataSet SendSelectQuery(string connectionString, string query)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))

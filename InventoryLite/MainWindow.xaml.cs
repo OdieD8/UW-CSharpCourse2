@@ -25,16 +25,25 @@ namespace InventoryLite
         {
             InitializeComponent();
 
+            UpdateItemsList();
+        }
+
+        public void UpdateItemsList()
+        {
             DataSet allItems = DataAccess.GetItems();
-
-            //List<DataRow> itemsList = allItems.Tables[0].AsEnumerable().ToList();
-
             inventoryItems.ItemsSource = allItems.Tables[0].DefaultView;
         }
 
         public void OnNew_Click(object sender, RoutedEventArgs e)
         {
+            AddNewProduct addProduct = new AddNewProduct();
+            addProduct.Show();
+            addProduct.Closed += AddProduct_Closed;
+        }
 
+        private void AddProduct_Closed(object sender, EventArgs e)
+        {
+            UpdateItemsList();
         }
 
         public void OnOpen_Click(object sender, RoutedEventArgs e)
@@ -44,7 +53,7 @@ namespace InventoryLite
 
         public void OnExit_Click(object sender, RoutedEventArgs e)
         {
-
+            Close();
         }
 
         public void OnFind_Click(object sender, RoutedEventArgs e)

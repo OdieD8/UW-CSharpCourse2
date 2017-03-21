@@ -19,12 +19,12 @@
                 <MenuItem Header="_Delete Current Record" Click="OnDelete_Click"/>
             </MenuItem>
         </Menu>
-        <ListView x:Name="inventoryItems" Height="200" VerticalAlignment="Top">
+        <ListView x:Name="inventoryItems" Height="200" VerticalAlignment="Top" Background="White">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Category}" Header="Category" Width="100"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=SKU}" Header="SKU" Width="100"/>
-                    <GridViewColumn DisplayMemberBinding="{Binding Path=Description}" Header="Description" Width="100"/>
+                    <GridViewColumn DisplayMemberBinding="{Binding Path=Description}" Header="Description" Width="150"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Price}" Header="Price" Width="100"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Quantity}" Header="Quantity" Width="100"/>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Cost}" Header="Cost" Width="100"/>
