@@ -29,15 +29,23 @@ namespace InventoryLite
             string category = CategoryBox.Text;
             string sku = SKUBox.Text;
             string description = DescriptionBox.Text;
+            if (PriceBox.Text == "Price")
+            {
+                PriceBox.Text = "0";
+            }
             decimal price = Convert.ToDecimal(PriceBox.Text);
+            if (QuantityBox.Text == "Quantity")
+            {
+                QuantityBox.Text = "0";
+            }
             decimal quantity = Convert.ToDecimal(QuantityBox.Text);
             if (CostBox.Text == "Cost")
             {
-                CostBox.Text = "";
+                CostBox.Text = "0";
             }
             decimal cost = Convert.ToDecimal(CostBox.Text);
 
-            if (!string.IsNullOrEmpty(category) && !string.IsNullOrEmpty(sku) && !string.IsNullOrEmpty(description) && price > 0 && quantity > 0)
+            if (category != "Category" && sku != "SKU" && description != "Description" && price != 0 && quantity != 0)
             {
                 int response = DataAccess.InsertNewItem(category, sku, description, price, quantity, cost);
 
@@ -54,6 +62,9 @@ namespace InventoryLite
             }
             else
             {
+                PriceBox.Text = "Price";
+                QuantityBox.Text = "Quantity";
+                CostBox.Text = "Cost";
                 MessageBox.Show("All fields except for 'Cost' are required");
             }
         }
