@@ -19,35 +19,59 @@ namespace InventoryLite
     /// </summary>
     public partial class AddNewProduct : Window
     {
+        string Category;
+        string Sku;
+        string Description;
+        decimal Price;
+        decimal Quantity;
+        decimal Cost;
+        public bool modify;
+
         public AddNewProduct()
         {
             InitializeComponent();
         }
 
+        private void Window_Loaded(object sender, EventArgs e)
+        {
+            if (modify == false)
+            {
+                SubmitButton.Visibility = Visibility.Visible;
+                ModifyButton.Visibility = Visibility.Hidden;
+            }
+
+            if (modify == true)
+            {
+                SubmitButton.Visibility = Visibility.Hidden;
+                ModifyButton.Visibility = Visibility.Visible;
+                SKUBox.IsReadOnly = true;
+            }
+        }
+
         private void SubmitButton_Click(object sender, RoutedEventArgs e)
         {
-            string category = CategoryBox.Text;
-            string sku = SKUBox.Text;
-            string description = DescriptionBox.Text;
+            Category = CategoryBox.Text;
+            Sku = SKUBox.Text;
+            Description = DescriptionBox.Text;
             if (PriceBox.Text == "Price")
             {
                 PriceBox.Text = "0";
             }
-            decimal price = Convert.ToDecimal(PriceBox.Text);
+            Price = Convert.ToDecimal(PriceBox.Text);
             if (QuantityBox.Text == "Quantity")
             {
                 QuantityBox.Text = "0";
             }
-            decimal quantity = Convert.ToDecimal(QuantityBox.Text);
+            Quantity = Convert.ToDecimal(QuantityBox.Text);
             if (CostBox.Text == "Cost")
             {
                 CostBox.Text = "0";
             }
-            decimal cost = Convert.ToDecimal(CostBox.Text);
+            Cost = Convert.ToDecimal(CostBox.Text);
 
-            if (category != "Category" && sku != "SKU" && description != "Description" && price != 0 && quantity != 0)
+            if (Category != "Category" && Sku != "SKU" && Description != "Description" && Price != 0 && Quantity != 0)
             {
-                int response = DataAccess.InsertNewItem(category, sku, description, price, quantity, cost);
+                int response = DataAccess.InsertNewItem(Category, Sku, Description, Price, Quantity, Cost);
 
                 if (response == 0)
                 {
@@ -56,7 +80,50 @@ namespace InventoryLite
                 else
                 {
                     MessageBox.Show("Item entered into database");
+                    Close();
+                }
+            }
+            else
+            {
+                PriceBox.Text = "Price";
+                QuantityBox.Text = "Quantity";
+                CostBox.Text = "Cost";
+                MessageBox.Show("All fields except for 'Cost' are required");
+            }
+        }
 
+        private void ModifyButton_Click(object sender, RoutedEventArgs e)
+        {
+            Category = CategoryBox.Text;
+            Sku = SKUBox.Text;
+            Description = DescriptionBox.Text;
+            if (PriceBox.Text == "Price")
+            {
+                PriceBox.Text = "0";
+            }
+            Price = Convert.ToDecimal(PriceBox.Text);
+            if (QuantityBox.Text == "Quantity")
+            {
+                QuantityBox.Text = "0";
+            }
+            Quantity = Convert.ToDecimal(QuantityBox.Text);
+            if (CostBox.Text == "Cost")
+            {
+                CostBox.Text = "0";
+            }
+            Cost = Convert.ToDecimal(CostBox.Text);
+
+            if (Category != "Category" && Sku != "SKU" && Description != "Description" && Price != 0 && Quantity != 0)
+            {
+                int response = DataAccess.ModifySpecificItem(Category, Sku, Description, Price, Quantity, Cost);
+
+                if (response == 0)
+                {
+                    MessageBox.Show("Error encountered, could not modify item");
+                }
+                else
+                {
+                    MessageBox.Show("Item has been modified in the database");
                     Close();
                 }
             }

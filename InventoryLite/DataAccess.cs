@@ -12,10 +12,33 @@ namespace InventoryLite
     class DataAccess
     {
         public static string DSNHost = @"SERVER=localhost\SQLEXPRESS;DATABASE=InventoryLite;Trusted_Connection=Yes;";
+        string createDbQuery = @"USE [InventoryLite]
+                GO
+                SET ANSI_NULLS ON
+                GO
+                SET QUOTED_IDENTIFIER ON
+                GO
+                SET ANSI_PADDING ON
+                GO
+
+                CREATE TABLE [dbo].[VAD2](
+	                [Category] [varchar](50) NULL,
+	                [SKU] [nvarchar](50) NULL,
+	                [Description] [nvarchar](50) NULL,
+	                [Price] [decimal](5, 2) NULL,
+	                [Quantity] [int] NULL,
+	                [Cost] [decimal](5, 2) NULL,
+	                [Value] [decimal](18, 0) NULL
+                ) ON [PRIMARY]
+
+                GO
+                SET ANSI_PADDING OFF
+                GO";
 
         public DataAccess()
         {
-
+            //For Creating new database table
+            SendNonSelectQuery(DSNHost, createDbQuery);
         }
 
         public static DataSet GetItems()
@@ -35,9 +58,28 @@ namespace InventoryLite
         {
             decimal value = price * quantity;
             string query = $"INSERT INTO VAD VALUES ('{category}', '{sku}', '{description}', {price}, {quantity}, {cost}, {value})";
-
             int response = SendNonSelectQuery(DSNHost, query);
+            return response;
+        }
 
+        public static DataSet GetSpecificItem(string sku)
+        {
+            string query = $"SELECT * FROM VAD WHERE SKU = '{sku}'";
+
+            DataSet dataSet = SendSelectQuery(DSNHost, query);
+
+            if (dataSet.Tables[0].Rows.Count > 0)
+            {
+                return dataSet;
+            }
+            return null;
+        }
+
+        public static int ModifySpecificItem(string category, string sku, string description, decimal price, decimal quantity, decimal cost)
+        {
+            decimal value = price * quantity;
+            string query = $"UPDATE VAD SET Category = '{category}', Description = '{description}', Price = {price}, Quantity = {quantity}, Cost = {cost}, Value = {value} WHERE SKU = '{sku}'";
+            int response = SendNonSelectQuery(DSNHost, query);
             return response;
         }
 

@@ -5,16 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InventoryLite"
         mc:Ignorable="d"
-        Title="AddNewProduct" Height="330" Width="494">
+        Title="AddNewProduct" Height="330" Width="494"
+        WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
-        <Label x:Name="EnterNewProdLabel" Content="Enter New Product Information" HorizontalAlignment="Center" Margin="160,10,151,0" VerticalAlignment="Top"/>
+        <Label x:Name="EnterNewProdLabel" Content="Enter Product Information" HorizontalAlignment="Center" Margin="120,10,126,0" VerticalAlignment="Top" Width="240" HorizontalContentAlignment="Center"/>
         <TextBox x:Name="CategoryBox" HorizontalAlignment="Left" Height="23" Margin="120,41,0,0" TextWrapping="Wrap" Text="Category" VerticalAlignment="Top" TextAlignment="Center" Width="240" GotFocus="CategoryBox_GotFocus" LostFocus="CategoryBox_LostFocus"/>
         <TextBox x:Name="SKUBox" HorizontalAlignment="Left" Height="23" Margin="120,69,0,0" TextWrapping="Wrap" Text="SKU" VerticalAlignment="Top" TextAlignment="Center" Width="240" GotFocus="SKUBox_GotFocus" LostFocus="SKUBox_LostFocus"/>
         <TextBox x:Name="DescriptionBox" HorizontalAlignment="Left" Height="23" Margin="120,97,0,0" TextWrapping="Wrap" Text="Description" VerticalAlignment="Top" TextAlignment="Center" Width="240" GotFocus="DescriptionBox_GotFocus" LostFocus="DescriptionBox_LostFocus"/>
         <TextBox x:Name="PriceBox" HorizontalAlignment="Left" Height="23" Margin="120,125,0,0" TextWrapping="Wrap" Text="Price" VerticalAlignment="Top" TextAlignment="Center" Width="240" GotFocus="PriceBox_GotFocus" LostFocus="PriceBox_LostFocus"/>
         <TextBox x:Name="QuantityBox" HorizontalAlignment="Left" Height="23" Margin="120,153,0,0" TextWrapping="Wrap" Text="Quantity" VerticalAlignment="Top" TextAlignment="Center" Width="240" GotFocus="QuantityBox_GotFocus" LostFocus="QuantityBox_LostFocus"/>
         <TextBox x:Name="CostBox" HorizontalAlignment="Left" Height="23" Margin="120,181,0,0" TextWrapping="Wrap" Text="Cost" VerticalAlignment="Top" TextAlignment="Center" Width="240" GotFocus="CostBox_GotFocus" LostFocus="CostBox_LostFocus"/>
-        <Button x:Name="SubmitButton" Content="SUBMIT" HorizontalAlignment="Left" Margin="120,225,0,0" VerticalAlignment="Top" Width="110" Height="30" Click="SubmitButton_Click"/>
+        <Button x:Name="SubmitButton" Content="ADD" HorizontalAlignment="Left" Margin="120,225,0,0" VerticalAlignment="Top" Width="110" Height="30" Click="SubmitButton_Click"/>
         <Button x:Name="CancelButton" Content="CANCEL" HorizontalAlignment="Left" Margin="250,225,0,0" VerticalAlignment="Top" Width="110" Height="30" Click="CancelButton_Click"/>
+        <Button x:Name="ModifyButton" Content="Modify" HorizontalAlignment="Left" Margin="120,225,0,0" VerticalAlignment="Top" Width="110" Height="30" Click="ModifyButton_Click"/>
     </Grid>
 </Window>

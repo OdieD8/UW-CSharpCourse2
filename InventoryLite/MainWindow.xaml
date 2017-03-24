@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InventoryLite"
         mc:Ignorable="d"
-        Title="InventoryLite" Height="700" Width="1000">
+        Title="InventoryLite" Height="700" Width="1000"
+        WindowStartupLocation="CenterScreen">
     <StackPanel>
         <Menu>
             <MenuItem Header="_File">
@@ -15,11 +16,11 @@
                 <MenuItem Header="E_xit" Click="OnExit_Click"/>
             </MenuItem>
             <MenuItem Header="Edit">
-                <MenuItem Header="_Find" Click="OnFind_Click"/>
+                <MenuItem Header="_Modify" Click="OnModify_Click"/>
                 <MenuItem Header="_Delete Current Record" Click="OnDelete_Click"/>
             </MenuItem>
         </Menu>
-        <ListView x:Name="inventoryItems" Height="200" VerticalAlignment="Top" Background="White">
+        <ListView x:Name="inventoryItems" Height="607" VerticalAlignment="Top" Background="White">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Category}" Header="Category" Width="100"/>
@@ -32,5 +33,6 @@
                 </GridView>
             </ListView.View>
         </ListView>
+        <Button x:Name="GetAllItemsButton" Content="SHOW ALL ITEMS" Height="30" Click="GetAllItemsButton_Click"/>
     </StackPanel>
 </Window>
