@@ -32,14 +32,8 @@ namespace InventoryLite
         public static DataSet GetItems()
         {
             string query = "Select * FROM VAD ORDER BY Category ASC";
-
             DataSet dataSet = SendSelectQuery(DSNHost, query);
-
-            if (dataSet.Tables[0].Rows.Count > 0)
-            {
-                return dataSet;
-            }
-            return null;
+            return dataSet;
         }
 
         public static int InsertNewItem(string category, string sku, string description, decimal price, decimal quantity, decimal cost)
@@ -53,13 +47,8 @@ namespace InventoryLite
         public static DataSet GetSpecificItem(string sku)
         {
             string query = $"SELECT * FROM VAD WHERE SKU = '{sku}'";
-
             DataSet dataSet = SendSelectQuery(DSNHost, query);
-            if (dataSet.Tables[0].Rows.Count > 0)
-            {
-                return dataSet;
-            }
-            return null;
+            return dataSet;
         }
 
         public static int ModifySpecificItem(string category, string sku, string description, decimal price, decimal quantity, decimal cost)

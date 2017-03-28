@@ -61,5 +61,13 @@ namespace InventoryLite
                 }
             }
         }
+
+        private void OpenSkuBox_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                OpenProductSubmit_Click(this, new RoutedEventArgs());
+            }
+        }
     }
 }

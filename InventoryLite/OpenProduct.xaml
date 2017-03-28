@@ -9,7 +9,7 @@
         WindowStartupLocation="CenterScreen">
     <Grid FocusManager.FocusedElement="{Binding ElementName=OpenSkuBox}">
         <Label x:Name="OpenProductLabel" Content="Enter Product SKU" HorizontalAlignment="Center" Margin="75,10,77,0" VerticalAlignment="Top" HorizontalContentAlignment="Center" Width="140"/>
-        <TextBox x:Name="OpenSkuBox" HorizontalAlignment="Left" Height="30" Margin="75,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" VerticalContentAlignment="Center" Width="140"/>
+        <TextBox x:Name="OpenSkuBox" HorizontalAlignment="Left" Height="30" Margin="75,55,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextAlignment="Center" VerticalContentAlignment="Center" Width="140" KeyDown="OpenSkuBox_KeyDown"/>
         <Button x:Name="OpenProductSubmit" Content="SUBMIT" HorizontalAlignment="Left" Margin="30,125,0,0" VerticalAlignment="Top" Width="105" Click="OpenProductSubmit_Click" Height="35"/>
         <Button x:Name="OpenProductCancel" Content="CANCEL" HorizontalAlignment="Left" Margin="155,125,0,0" VerticalAlignment="Top" Width="105" Click="OpenProductCancel_Click" Height="35"/>
 

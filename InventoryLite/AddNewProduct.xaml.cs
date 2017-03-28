@@ -161,7 +161,6 @@ namespace InventoryLite
                 {
                     MessageBox.Show("Item has been delete from the database");
                     Close();
-
                 }
             }
         }
