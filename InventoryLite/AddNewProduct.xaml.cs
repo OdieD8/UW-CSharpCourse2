@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -38,12 +39,14 @@ namespace InventoryLite
             {
                 SubmitButton.Visibility = Visibility.Visible;
                 ModifyButton.Visibility = Visibility.Hidden;
+                DeleteButton.Visibility = Visibility.Hidden;
             }
 
             if (modify == true)
             {
                 SubmitButton.Visibility = Visibility.Hidden;
                 ModifyButton.Visibility = Visibility.Visible;
+                DeleteButton.Visibility = Visibility.Visible;
                 SKUBox.IsReadOnly = true;
             }
         }
@@ -141,6 +144,27 @@ namespace InventoryLite
             Close();
         }
 
+
+        private void DeleteButton_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure you want to delete this item?", "Delete Item?", MessageBoxButton.YesNo);
+
+            if (messageBoxResult == MessageBoxResult.Yes)
+            {
+                string sku = SKUBox.Text;
+                int response = DataAccess.DeleteSpecificItem(sku);
+                if (response == 0)
+                {
+                    MessageBox.Show("Error encountered, could not delete item");
+                }
+                else
+                {
+                    MessageBox.Show("Item has been delete from the database");
+                    Close();
+
+                }
+            }
+        }
         private void CategoryBox_GotFocus(object sender, RoutedEventArgs e)
         {
             if (CategoryBox.Text == "Category")

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:InventoryLite"
         mc:Ignorable="d"
-        Title="AddNewProduct" Height="330" Width="494"
+        Title="Product" Height="350" Width="494"
         WindowStartupLocation="CenterScreen" Loaded="Window_Loaded">
     <Grid>
         <Label x:Name="EnterNewProdLabel" Content="Enter Product Information" HorizontalAlignment="Center" Margin="120,10,126,0" VerticalAlignment="Top" Width="240" HorizontalContentAlignment="Center"/>
@@ -17,6 +17,7 @@
         <TextBox x:Name="CostBox" HorizontalAlignment="Left" Height="23" Margin="120,181,0,0" TextWrapping="Wrap" Text="Cost" VerticalAlignment="Top" TextAlignment="Center" Width="240" GotFocus="CostBox_GotFocus" LostFocus="CostBox_LostFocus"/>
         <Button x:Name="SubmitButton" Content="ADD" HorizontalAlignment="Left" Margin="120,225,0,0" VerticalAlignment="Top" Width="110" Height="30" Click="SubmitButton_Click"/>
         <Button x:Name="CancelButton" Content="CANCEL" HorizontalAlignment="Left" Margin="250,225,0,0" VerticalAlignment="Top" Width="110" Height="30" Click="CancelButton_Click"/>
-        <Button x:Name="ModifyButton" Content="Modify" HorizontalAlignment="Left" Margin="120,225,0,0" VerticalAlignment="Top" Width="110" Height="30" Click="ModifyButton_Click"/>
+        <Button x:Name="ModifyButton" Content="MODIFY" HorizontalAlignment="Left" Margin="120,225,0,0" VerticalAlignment="Top" Width="110" Height="30" Click="ModifyButton_Click"/>
+        <Button x:Name="DeleteButton" Content="DELETE" HorizontalAlignment="Left" Margin="185,270,0,0" VerticalAlignment="Top" Width="110" Height="30" Background="#FFF77474" Foreground="Black" Click="DeleteButton_Click"/>
     </Grid>
 </Window>

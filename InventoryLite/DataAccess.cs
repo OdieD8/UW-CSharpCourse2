@@ -12,16 +12,11 @@ namespace InventoryLite
     class DataAccess
     {
         public static string DSNHost = @"SERVER=localhost\SQLEXPRESS;DATABASE=InventoryLite;Trusted_Connection=Yes;";
-        string createDbQuery = @"USE [InventoryLite]
-                GO
-                SET ANSI_NULLS ON
-                GO
-                SET QUOTED_IDENTIFIER ON
-                GO
-                SET ANSI_PADDING ON
-                GO
 
-                CREATE TABLE [dbo].[VAD2](
+        public DataAccess()
+        {
+            string createDbQuery = @"USE [InventoryLite]
+                CREATE TABLE [dbo].[VAD](
 	                [Category] [varchar](50) NULL,
 	                [SKU] [nvarchar](50) NULL,
 	                [Description] [nvarchar](50) NULL,
@@ -29,15 +24,8 @@ namespace InventoryLite
 	                [Quantity] [int] NULL,
 	                [Cost] [decimal](5, 2) NULL,
 	                [Value] [decimal](18, 0) NULL
-                ) ON [PRIMARY]
+                ) ON [PRIMARY]";
 
-                GO
-                SET ANSI_PADDING OFF
-                GO";
-
-        public DataAccess()
-        {
-            //For Creating new database table
             SendNonSelectQuery(DSNHost, createDbQuery);
         }
 
@@ -67,7 +55,6 @@ namespace InventoryLite
             string query = $"SELECT * FROM VAD WHERE SKU = '{sku}'";
 
             DataSet dataSet = SendSelectQuery(DSNHost, query);
-
             if (dataSet.Tables[0].Rows.Count > 0)
             {
                 return dataSet;
@@ -79,6 +66,13 @@ namespace InventoryLite
         {
             decimal value = price * quantity;
             string query = $"UPDATE VAD SET Category = '{category}', Description = '{description}', Price = {price}, Quantity = {quantity}, Cost = {cost}, Value = {value} WHERE SKU = '{sku}'";
+            int response = SendNonSelectQuery(DSNHost, query);
+            return response;
+        }
+
+        public static int DeleteSpecificItem(string sku)
+        {
+            string query = $"DELETE FROM VAD WHERE SKU = '{sku}'";
             int response = SendNonSelectQuery(DSNHost, query);
             return response;
         }

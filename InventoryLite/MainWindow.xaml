@@ -20,7 +20,7 @@
                 <MenuItem Header="_Delete Current Record" Click="OnDelete_Click"/>
             </MenuItem>
         </Menu>
-        <ListView x:Name="inventoryItems" Height="607" VerticalAlignment="Top" Background="White">
+        <ListView x:Name="inventoryItems" Height="607" VerticalAlignment="Top" Background="White" MouseDoubleClick="inventoryItems_MouseDoubleClick">
             <ListView.View>
                 <GridView>
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Category}" Header="Category" Width="100"/>
@@ -32,6 +32,15 @@
                     <GridViewColumn DisplayMemberBinding="{Binding Path=Value}" Header="Value" Width="100"/>
                 </GridView>
             </ListView.View>
+            <ListView.ContextMenu>
+                <ContextMenu>
+                    <MenuItem x:Name="contextNew" Header="_New" Click="OnNew_Click"/>
+                    <MenuItem x:Name="contextOpen" Header="_Open" Click="OnOpen_Click"/>
+                    <MenuItem x:Name="contextModify" Header="_Modify" Click="OnModify_Click"/>
+                    <Separator/>
+                    <MenuItem x:Name="contextDelete" Header="_Delete" Click="OnDelete_Click"/>
+                </ContextMenu>
+            </ListView.ContextMenu>
         </ListView>
         <Button x:Name="GetAllItemsButton" Content="SHOW ALL ITEMS" Height="30" Click="GetAllItemsButton_Click"/>
     </StackPanel>

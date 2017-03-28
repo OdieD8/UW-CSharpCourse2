@@ -29,6 +29,8 @@ namespace InventoryLite
             InitializeComponent();
             GetAllItemsButton.Visibility = Visibility.Hidden;
             UpdateItemsList();
+            //Used for creating table
+            //DataAccess dataAccess = new DataAccess();
         }
 
         protected override void OnClosed(EventArgs e)
@@ -115,13 +117,42 @@ namespace InventoryLite
 
         public void OnDelete_Click(object sender, RoutedEventArgs e)
         {
+            DataRowView rowView = (DataRowView)inventoryItems.SelectedItem;
+            if (rowView != null)
+            {
+                MessageBoxResult messageBoxResult = MessageBox.Show("Are you sure you want to delete this item?", "Delete Item?", MessageBoxButton.YesNo);
 
+                if (messageBoxResult == MessageBoxResult.Yes)
+                {
+                    string sku = rowView["SKU"].ToString();
+                    int response = DataAccess.DeleteSpecificItem(sku);
+                    if (response == 0)
+                    {
+                        MessageBox.Show("Error encountered, could not delete item");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Item has been delete from the database");
+                        UpdateItemsList();
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("Please click on item you want to delete");
+                return;
+            }
         }
 
         private void GetAllItemsButton_Click(object sender, RoutedEventArgs e)
         {
             UpdateItemsList();
             GetAllItemsButton.Visibility = Visibility.Hidden;
+        }
+
+        private void inventoryItems_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            OnModify_Click(sender, e);
         }
     }
 }
